@@ -1,0 +1,87 @@
+body{
+    color: #800080
+;
+    background: white;
+}
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header{
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #30D5C8;
+}
+
+.header_inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'Pacifico', cursive;
+}
+
+.option{
+    padding-right: 35px;
+}
+
+.name{
+    padding-left: 20px;
+}
+
+.footer{
+    flex: 0 0 auto;
+    align-self: end;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 30px;
+    font-family: 'Pacifico', cursive;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background: #30D5C8 ;
+}
+
+.content{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding-top: 5%;
+    padding-left: 0.5%;
+}
+
+.svg-container{
+    text-align: center;
+}
+
+.svg-graph{
+    position: relative;
+    margin: 0 auto;
+    background-color: antiquewhite;
+}
+
+.axis{
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: dash 1s linear forwards;
+}
+
+.coordinate-line{
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: dash 3s 1s linear forwards;
+}
+
+.coordinate-text{
+    fill: 0;
+    animation: full-opacity-anim 1s 1s linear forwards;
+}
