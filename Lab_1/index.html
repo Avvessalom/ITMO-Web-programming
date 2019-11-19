@@ -171,63 +171,119 @@
         <div>
             <div class="form-inputs ">
 
-                <!--                <label for="y-value-select"><strong>Y: </strong></label>-->
-                <!--                    <input id="y-value-select" name="y_value" value="" type="text" placeholder="-3 ... 5" />-->
                 <div class="group">
                     <input type="text" id="y-value-select" name="y_value" required>
-                    <!--                    <i class="fa fa-check" style="color: green"></i>-->
                     <span class="highlight"></span>
                     <span class="bar"></span>
-                    <label>Y Value</label>
+                    <label>Y Value:</label>
+
+                    <div class="R"><p><b>R:</b></p>
+                        <p><text>1</text><input type="checkbox" id="payt1" name="option1" value="1"><label for="payt1"></label></p>
+                        <p><text>2</text><input type="checkbox"  id="payt3" name="option2" value="2"><label for="payt3"></label></p>
+                        <p><text>3</text><input type="checkbox" id="payt2" name="option3" value="3"><label for="payt2"></label></p>
+                        <p><text>4</text><input type="checkbox" id="payt4" name="option4" value="4"><label for="payt4"></label></p>
+                            <p><text>5</text><input type="checkbox" id="payt5" name="option5" value="5"><label for="payt5"></label></p></div>
                 </div>
 
 
-                <label for="r-value-select" class="form-label" style="margin: auto 5px auto 0;">
-                    <div><strong>R: </strong></div></label>
-                <select id="r-value-select" name="r_value">
-                    <option value="1">1</option>
-                    <option>1.5</option>
-                    <option>2</option>
-                    <option>2.5</option>
-                    <option>3</option>
-                </select>
+                <div class="x-buttons centered " id="x_value_select">
+                    <p style="margin-top: 7px"><strong>X Value: </strong></p>
+
+                    <div class="x-buttons__inner">
+                        <p>
+                        <div class="x-button"><span>-3</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="x-button"><span>-2</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="x-button"><span>-1</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+
+                    </div>
+
+                    <div class="x-buttons__inner">
+                        <p>
+                        <div class="x-button"><span>1</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="x-button x-button-active"><span>0</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="x-button"><span>2</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+
+                    </div>
+                    <div class="x-buttons__inner">
+                        <p>
+                        <div class="x-button"><span>3</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="x-button"><span>4</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="x-button"><span>5</span>
+                            <svg>
+                                <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                                <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
+                            </svg>
+                        </div>
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="form-buttons ">
+                    <button class="send-button" type="submit" id="submitButton">Отправить</button>
+                    <button class="clear-button" type="button" id="clearButton">Очистить</button>
+                </div>
+
             </div>
+            <span id="error-log" style="color: red"> </span>
 
-
-            <div class="x-buttons centered " id="x_value_select">
-                <p style="margin-top: 7px"><strong>X Value: </strong></p>
-
-                <div class="x-buttons__inner">
-                    <p><div class="x-button"><span>-4</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-                    <p><div class="x-button"><span>-3</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-                    <p><div class="x-button"><span>-2</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-
-                </div>
-
-                <div class="x-buttons__inner">
-                    <p><div class="x-button"><span>-1</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-                    <p><div class="x-button x-button-active"><span>0</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-                    <p><div class="x-button"><span>1</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-
-                </div>
-                <div class="x-buttons__inner">
-                    <p><div class="x-button"><span>2</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-                    <p><div class="x-button"><span>3</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-                    <p><div class="x-button"><span>4</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
-
-                </div>
-            </div>
-
-
-            <div class="form-buttons ">
-                <button class="send-button" type="submit" id="submitButton">Отправить</button>
-                <button class="clear-button" type="button" id="clearButton">Очистить</button>
-            </div>
 
         </div>
-        <span id="error-log" style="color: red"> </span>
-
-
     </form>
 
 </div>

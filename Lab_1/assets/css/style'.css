@@ -1,8 +1,11 @@
 body{
+
     color: #800080
 ;
     background: white;
+
 }
+
 
 .container{
     width: 100%;
@@ -66,10 +69,11 @@ body{
     text-align: center;
 }
 
-.svg-graph{
+.svg-graph {
     position: relative;
     margin: 0 auto;
-    background-color: antiquewhite;
+    background-color: #90d530;
+    background-image: url("img/300px-Шаблон_кот_2.jpg");
 }
 
 .axis{
@@ -113,10 +117,16 @@ body{
 .form-buttons > button{
     margin: 3px 10px;
 }
-
+.R{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .group{
     position: relative;
     margin: auto 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .highlight{
@@ -144,28 +154,29 @@ body{
 .send-button{
     background-color: #30D5C8;
     border: 1px solid rgb(33, 126, 74);
+    width: 150px;
 }
 
-#r-value-select{
-    text-align: center;
-    display: block;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.1;
-    width: 50%;
-    max-width: 80%;
-    margin: auto;
-    box-sizing: border-box;
-    border: 1px solid #aaa;
-    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
-    border-radius: .5em;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #30D5C8;
-    background-repeat: no-repeat, repeat;
-    color: purple;
-}
+/*#r-value-select{*/
+/*    text-align: center;*/
+/*    display: block;*/
+/*    font-size: 20px;*/
+/*    font-weight: 700;*/
+/*    line-height: 1.1;*/
+/*    width: 50%;*/
+/*    max-width: 80%;*/
+/*    margin: auto;*/
+/*    box-sizing: border-box;*/
+/*    border: 1px solid #aaa;*/
+/*    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);*/
+/*    border-radius: .5em;*/
+/*    -moz-appearance: none;*/
+/*    -webkit-appearance: none;*/
+/*    appearance: none;*/
+/*    background-color: #30D5C8;*/
+/*    background-repeat: no-repeat, repeat;*/
+/*    color: #800080;*/
+/*}*/
 
 .group{
     position: relative;
@@ -174,21 +185,29 @@ body{
 
 .x-button{
     margin: 5px;
-    color: black;
+    color: #800080;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    width: 50px;
+    height: 35px;
 }
 
+.x-button svg{
+    height: 35px;
+    width: 50px;
+    fill: none;
+    stroke-width: 5;
+}
 .x-button svg .o1{
-    stroke: #DC143C;
+    stroke: #800080;
     fill: rgba(255, 23, 70, 0);
     transition: all 1s ease-in-out;
 }
 
 .x-button svg .o2{
-    stroke: #DC143C;
+    stroke: #800080;
     stroke-dasharray: 20;
     stroke-dashoffset: 20;
     fill: rgba(255, 23, 70, 0);
@@ -197,8 +216,16 @@ body{
 
 .x-button-active{
     transition: all 1s ease-in-out;
-    background-color: purple;
+    background-color: #800080;
     color: #30D5C8;
+    display: flex;
+}
+
+.x-button span{
+    position: absolute;
+    margin: 0 auto;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 button{
@@ -207,7 +234,7 @@ button{
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px rgba(0,0,0,0.08);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px rgba(0,0,0,0.08);
     color: #fff;
-    width: 100px;
+    width: 50px;
     text-align: center;
     font-size: 20px;
     padding: 8px 16px;
@@ -220,6 +247,7 @@ button{
 .clear-button{
     background-color: #30D5C8;
     border: 1px solid rgb(154, 12, 17);
+    width: 150px;
 }
 
 /* y value*/
@@ -233,4 +261,247 @@ input{
     border: none;
     border-bottom: 2px solid #757575;
     background-color: #30D5C8;
+}
+
+
+
+ #payt3 {display: none;}
+[for="payt3"] {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background: #ddd linear-gradient(#ccc, #fff);
+    box-shadow:
+            inset 0 2px 1px rgba(0,0,0,.15),
+            0 2px 5px rgba(200,200,200,.1);
+    cursor: pointer;
+}
+[for="payt3"]:after {
+    content: "";
+    position: absolute;
+    left: 40%; top: 40%;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+    background: #969696 radial-gradient(40% 35%, #ccc, #969696 60%);
+    box-shadow:
+            inset 0 2px 4px 1px rgba(0,0,0,.3),
+            0 1px 0 rgba(255,255,255,1),
+            inset 0 1px 0 white;
+}
+[for="payt3"]:before {
+    content: "";
+    position: absolute;
+    top: 8%; right: 8%; bottom: 8%; left: 8%;
+    border-radius: 100%;
+    background: #eaeaea;
+    box-shadow:
+            0 3px 5px rgba(0,0,0,.25),
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -5px 5px rgba(100,100,100,.1),
+            inset 0 5px 5px rgba(255,255,255,.3);
+}
+#payt3:checked ~ [for="payt3"]:before {
+    background: #e5e5e5 linear-gradient(#dedede, #fdfdfd);
+}
+#payt3:checked ~ [for="payt3"]:after {
+    background: #25d025 radial-gradient(40% 35%, #5aef5a, #25d025 60%);
+    box-shadow:
+            inset 0 3px 5px 1px rgba(0,0,0,.1),
+            0 1px 0 rgba(255,255,255,.4),
+            0 0 10px 2px rgba(0, 210, 0, .5);
+}
+#payt1 {display: none;}
+[for="payt1"] {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background: #ddd linear-gradient(#ccc, #fff);
+    box-shadow:
+            inset 0 2px 1px rgba(0,0,0,.15),
+            0 2px 5px rgba(200,200,200,.1);
+    cursor: pointer;
+}
+[for="payt1"]:after {
+    content: "";
+    position: absolute;
+    left: 40%; top: 40%;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+    background: #969696 radial-gradient(40% 35%, #ccc, #969696 60%);
+    box-shadow:
+            inset 0 2px 4px 1px rgba(0,0,0,.3),
+            0 1px 0 rgba(255,255,255,1),
+            inset 0 1px 0 white;
+}
+[for="payt1"]:before {
+    content: "";
+    position: absolute;
+    top: 8%; right: 8%; bottom: 8%; left: 8%;
+    border-radius: 100%;
+    background: #eaeaea;
+    box-shadow:
+            0 3px 5px rgba(0,0,0,.25),
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -5px 5px rgba(100,100,100,.1),
+            inset 0 5px 5px rgba(255,255,255,.3);
+}
+#payt1:checked ~ [for="payt1"]:before {
+    background: #e5e5e5 linear-gradient(#dedede, #fdfdfd);
+}
+#payt1:checked ~ [for="payt1"]:after {
+    background: #25d025 radial-gradient(40% 35%, #5aef5a, #25d025 60%);
+    box-shadow:
+            inset 0 3px 5px 1px rgba(0,0,0,.1),
+            0 1px 0 rgba(255,255,255,.4),
+            0 0 10px 2px rgba(0, 210, 0, .5);
+}
+#payt2 {display: none;}
+[for="payt2"] {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background: #ddd linear-gradient(#ccc, #fff);
+    box-shadow:
+            inset 0 2px 1px rgba(0,0,0,.15),
+            0 2px 5px rgba(200,200,200,.1);
+    cursor: pointer;
+}
+[for="payt2"]:after {
+    content: "";
+    position: absolute;
+    left: 40%; top: 40%;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+    background: #969696 radial-gradient(40% 35%, #ccc, #969696 60%);
+    box-shadow:
+            inset 0 2px 4px 1px rgba(0,0,0,.3),
+            0 1px 0 rgba(255,255,255,1),
+            inset 0 1px 0 white;
+}
+[for="payt2"]:before {
+    content: "";
+    position: absolute;
+    top: 8%; right: 8%; bottom: 8%; left: 8%;
+    border-radius: 100%;
+    background: #eaeaea;
+    box-shadow:
+            0 3px 5px rgba(0,0,0,.25),
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -5px 5px rgba(100,100,100,.1),
+            inset 0 5px 5px rgba(255,255,255,.3);
+}
+#payt2:checked ~ [for="payt2"]:before {
+    background: #e5e5e5 linear-gradient(#dedede, #fdfdfd);
+}
+#payt2:checked ~ [for="payt2"]:after {
+    background: #25d025 radial-gradient(40% 35%, #5aef5a, #25d025 60%);
+    box-shadow:
+            inset 0 3px 5px 1px rgba(0,0,0,.1),
+            0 1px 0 rgba(255,255,255,.4),
+            0 0 10px 2px rgba(0, 210, 0, .5);
+}
+#payt4 {display: none;}
+[for="payt4"] {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background: #ddd linear-gradient(#ccc, #fff);
+    box-shadow:
+            inset 0 2px 1px rgba(0,0,0,.15),
+            0 2px 5px rgba(200,200,200,.1);
+    cursor: pointer;
+}
+[for="payt4"]:after {
+    content: "";
+    position: absolute;
+    left: 40%; top: 40%;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+    background: #969696 radial-gradient(40% 35%, #ccc, #969696 60%);
+    box-shadow:
+            inset 0 2px 4px 1px rgba(0,0,0,.3),
+            0 1px 0 rgba(255,255,255,1),
+            inset 0 1px 0 white;
+}
+[for="payt4"]:before {
+    content: "";
+    position: absolute;
+    top: 8%; right: 8%; bottom: 8%; left: 8%;
+    border-radius: 100%;
+    background: #eaeaea;
+    box-shadow:
+            0 3px 5px rgba(0,0,0,.25),
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -5px 5px rgba(100,100,100,.1),
+            inset 0 5px 5px rgba(255,255,255,.3);
+}
+#payt4:checked ~ [for="payt4"]:before {
+    background: #e5e5e5 linear-gradient(#dedede, #fdfdfd);
+}
+#payt4:checked ~ [for="payt4"]:after {
+    background: #25d025 radial-gradient(40% 35%, #5aef5a, #25d025 60%);
+    box-shadow:
+            inset 0 3px 5px 1px rgba(0,0,0,.1),
+            0 1px 0 rgba(255,255,255,.4),
+            0 0 10px 2px rgba(0, 210, 0, .5);
+}
+#payt5 {display: none;}
+[for="payt5"] {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background: #ddd linear-gradient(#ccc, #fff);
+    box-shadow:
+            inset 0 2px 1px rgba(0,0,0,.15),
+            0 2px 5px rgba(200,200,200,.1);
+    cursor: pointer;
+}
+[for="payt5"]:after {
+    content: "";
+    position: absolute;
+    left: 40%; top: 40%;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+    background: #969696 radial-gradient(40% 35%, #ccc, #969696 60%);
+    box-shadow:
+            inset 0 2px 4px 1px rgba(0,0,0,.3),
+            0 1px 0 rgba(255,255,255,1),
+            inset 0 1px 0 white;
+}
+[for="payt5"]:before {
+    content: "";
+    position: absolute;
+    top: 8%; right: 8%; bottom: 8%; left: 8%;
+    border-radius: 100%;
+    background: #eaeaea;
+    box-shadow:
+            0 3px 5px rgba(0,0,0,.25),
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -5px 5px rgba(100,100,100,.1),
+            inset 0 5px 5px rgba(255,255,255,.3);
+}
+#payt5:checked ~ [for="payt5"]:before {
+    background: #e5e5e5 linear-gradient(#dedede, #fdfdfd);
+}
+#payt5:checked ~ [for="payt5"]:after {
+    background: #25d025 radial-gradient(40% 35%, #5aef5a, #25d025 60%);
+    box-shadow:
+            inset 0 3px 5px 1px rgba(0,0,0,.1),
+            0 1px 0 rgba(255,255,255,.4),
+            0 0 10px 2px rgba(0, 210, 0, .5);
 }

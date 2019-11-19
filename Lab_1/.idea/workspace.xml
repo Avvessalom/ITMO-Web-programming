@@ -29,6 +29,11 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\OSPanel\domains\lab1\assets\css" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -56,7 +61,7 @@
       <workItem from="1573987803484" duration="8240000" />
       <workItem from="1574075606762" duration="10660000" />
       <workItem from="1574152277279" duration="72000" />
-      <workItem from="1574152393064" duration="732000" />
+      <workItem from="1574152393064" duration="11241000" />
     </task>
     <servers />
   </component>
