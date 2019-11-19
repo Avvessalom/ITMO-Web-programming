@@ -7,6 +7,93 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 </head>
 <body>
+<script src="jquery-3.4.1.js"></script>
+
+<script>
+    const checkArea = function(){
+        let yStr = $("#y-value-select").val().replace(",",".");
+        let xValue = 0;
+        $('.x-button').each(function () {
+            if ($(this).hasClass('x-button-active')){
+                xValue = $(this).find('span').text();
+            }
+        });
+        let x = xValue;
+        let y = Number(yStr);
+        let r = Number($("#r-value-select").val());
+        return (x >= -r / 2 && x <= 0 && y <= r && y >= 0) || (y >= (-x / 2 - r / 2) && y <= 0 && x <= 0) || ((x * x + y * y) <= r * r /4 && x >= 0 && y >= 0);
+    };
+    const onInpChange = function(){
+        let elemY = $("#y-value-select");
+        let dotTarget = $("#target-dot");
+        let value = Number(elemY.val().replace(",","."));
+        if (value < -3 ||  value > 5 || isNaN(value) || /[\s]+/.test(elemY.val()) || elemY.val()===""){
+            elemY.removeClass().addClass("is-invalid");
+            dotTarget.attr("r", 0);
+            $('#menhera').attr("src","resources/invalid.jpg");
+            return false;
+        } else {
+            document.querySelector('#error-log').textContent = " ";
+            elemY.removeClass().addClass("is-valid");
+            let elemR = $("#r-value-select");
+            let xValue = 0;
+            $('.x-button').each(function () {
+                if ($(this).hasClass('x-button-active')){
+                    xValue = $(this).find('span').text();
+                }
+            });
+            console.log(xValue);
+            let calculatedX = 2 * (Number(xValue) * 50 / Number(elemR.val())) + 150;
+            let calculatedY = -(((Number(elemY.val().replace(",",".")) * 50 * 2) / Number(elemR.val())) - 150);
+            dotTarget.attr("r", 3);
+            dotTarget.attr("cy", calculatedY);
+            dotTarget.attr("cx", calculatedX);
+            if (checkArea()){
+                $('#menhera').attr("src","resources/correct.jpg");
+            } else {
+                $('#menhera').attr("src" , "resources/incorrect.jpg");
+            }
+            return true;
+        }
+    };
+    const submit = function(e) {
+        e.preventDefault();
+        if (!onInpChange()){
+            document.querySelector('#error-log').textContent = "Значение Y должно быть в диапазоне [-3;5]";
+            return;
+        }
+        const formData = new FormData(document.querySelector('#form'));
+        let xValue = 0;
+        $('.x-button').each(function () {
+            if ($(this).hasClass('x-button-active')){
+                xValue = $(this).find('span').text();
+            }
+        });
+        formData.append("x_value", xValue);
+        fetch('php/check.php', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(ans => ans.text())
+            .then(table => document.querySelector('#ans').innerHTML=table);
+    };
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelector('#submitButton').addEventListener('click', submit);
+    });
+    const clear = function(e) {
+        e.preventDefault();
+        fetch('php/clear.php', {
+            method: 'POST',
+        })
+            .then(ans => ans.text())
+            .then(table => document.querySelector('#ans').innerHTML=table);
+    };
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelector('#clearButton').addEventListener('click', clear);
+        $(document).animate("fadeIn");
+    });
+</script>
+
 
 <header class="header">
     <div class="container">
@@ -24,7 +111,7 @@
 <footer class="footer">
     <div class="container">
         <div class="footer_inner">
-            <span>  &copy; Lazurin Eugene</span>
+            <span>  &copy; Лазурин Евгений</span>
         </div>
     </div>
 </footer>
@@ -79,7 +166,92 @@
             <circle r="0" cx="150" cy="150" id="target-dot"></circle>
         </svg>
     </div>
+
+    <form class="data-send-form wrapper" id="form" oninput="onInpChange()">
+        <div>
+            <div class="form-inputs ">
+
+                <!--                <label for="y-value-select"><strong>Y: </strong></label>-->
+                <!--                    <input id="y-value-select" name="y_value" value="" type="text" placeholder="-3 ... 5" />-->
+                <div class="group">
+                    <input type="text" id="y-value-select" name="y_value" required>
+                    <!--                    <i class="fa fa-check" style="color: green"></i>-->
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Y Value</label>
+                </div>
+
+
+                <label for="r-value-select" class="form-label" style="margin: auto 5px auto 0;">
+                    <div><strong>R: </strong></div></label>
+                <select id="r-value-select" name="r_value">
+                    <option value="1">1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                    <option>2.5</option>
+                    <option>3</option>
+                </select>
+            </div>
+
+
+            <div class="x-buttons centered " id="x_value_select">
+                <p style="margin-top: 7px"><strong>X Value: </strong></p>
+
+                <div class="x-buttons__inner">
+                    <p><div class="x-button"><span>-4</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+                    <p><div class="x-button"><span>-3</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+                    <p><div class="x-button"><span>-2</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+
+                </div>
+
+                <div class="x-buttons__inner">
+                    <p><div class="x-button"><span>-1</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+                    <p><div class="x-button x-button-active"><span>0</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+                    <p><div class="x-button"><span>1</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+
+                </div>
+                <div class="x-buttons__inner">
+                    <p><div class="x-button"><span>2</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+                    <p><div class="x-button"><span>3</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+                    <p><div class="x-button"><span>4</span><svg><polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline><polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline></svg></div></p>
+
+                </div>
+            </div>
+
+
+            <div class="form-buttons ">
+                <button class="send-button" type="submit" id="submitButton">Отправить</button>
+                <button class="clear-button" type="button" id="clearButton">Очистить</button>
+            </div>
+
+        </div>
+        <span id="error-log" style="color: red"> </span>
+
+
+    </form>
+
 </div>
+
+
+
+
+<script>
+    $('.x-button').each(function () {
+        this.addEventListener('click', function () {
+            $('.x-button').each(function () {
+                if ($(this).hasClass("x-button-active")){
+                    $(this).toggleClass("x-button-active");
+                }
+            });
+            $(this).toggleClass("x-button-active");
+            onInpChange();
+        })
+    })
+</script>
+
+
+
+
 
 </body>
 </html>

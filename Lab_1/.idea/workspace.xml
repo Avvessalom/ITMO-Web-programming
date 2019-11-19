@@ -8,6 +8,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -20,6 +25,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -48,6 +54,9 @@
       <workItem from="1573920233088" duration="4754000" />
       <workItem from="1573987250907" duration="541000" />
       <workItem from="1573987803484" duration="8240000" />
+      <workItem from="1574075606762" duration="10660000" />
+      <workItem from="1574152277279" duration="72000" />
+      <workItem from="1574152393064" duration="732000" />
     </task>
     <servers />
   </component>
