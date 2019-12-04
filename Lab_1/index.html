@@ -5,101 +5,93 @@
     <title>Lab_1</title>
     <link rel="stylesheet" href="assets/css/style'.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
-</head>
-<body>
-<script src="jquery-3.4.1.js"></script>
-
-<script>
-    const checkArea = function(){
-        let yStr = $("#y-value-select").val().replace(",",".");
-        let xValue = 0;
-        $('.x-button').each(function () {
-            if ($(this).hasClass('x-button-active')){
-                xValue = $(this).find('span').text();
-            }
+    <script src="jquery-3.4.1.js"></script>
+    <script src="date.format.js"></script>
+    <script>
+        $(function(){
+            $("input").keydown(function(event){
+                if(event.keyCode == 13){
+                    event.preventDefault();
+                    return false;
+                }
+            });
         });
-        let x = xValue;
-        let y = Number(yStr);
-        let r = Number($("#r-value-select").val());
-        return (x >= -r / 2 && x <= 0 && y <= r && y >= 0) || (y >= (-x / 2 - r / 2) && y <= 0 && x <= 0) || ((x * x + y * y) <= r * r /4 && x >= 0 && y >= 0);
-    };
-    const onInpChange = function(){
-        let elemY = $("#y-value-select");
-        let dotTarget = $("#target-dot");
-        let value = Number(elemY.val().replace(",","."));
-        if (value < -3 ||  value > 5 || isNaN(value) || /[\s]+/.test(elemY.val()) || elemY.val()===""){
-            elemY.removeClass().addClass("is-invalid");
-            dotTarget.attr("r", 0);
-            $('#menhera').attr("src","resources/invalid.jpg");
-            return false;
-        } else {
-            document.querySelector('#error-log').textContent = " ";
-            elemY.removeClass().addClass("is-valid");
-            let elemR = $("#r-value-select");
+        // $(function(){
+        //     $("input").keydown(function(event){
+        //         if(event.keyCode == 13){
+        //             event.preventDefault();
+        //             return false;
+        //         }
+        //     });
+        //     // $('.checkbox').click(function(){
+        //     //     $('.checkbox').removeAttr('checked','checked');
+        //     //     $(this).prop('checked', true);
+        //     // });
+        // });
+        let counter = 0;
+        function addToTable (hit, stime,x,y,r){
+            $("#resultSet tr:last").after('<tr class="tableCell"><td>'+counter+'</td><td>'+hit+'</td><td>'+new Date().format("dd mmm HH:MM:ss")+'</td><td>'+stime+'</td>');
+        }
+        function go() {
+            let yok = false;
+            let r = 0;
             let xValue = 0;
+            let x_value = 0;
+
+            //y start
+            let y_value = $('#y-value-select').val(); // y
+            let reg = /^-?[0-5]$/;
+            yok = reg.test(y_value);
+
+
+            //r start
+            $('.checkbox').each(function(){
+                if ($(this).prop('checked') == true){
+                    radius = $(this).val();
+                }
+            });
+
+            //x start
             $('.x-button').each(function () {
                 if ($(this).hasClass('x-button-active')){
                     xValue = $(this).find('span').text();
+                    x_value = xValue;
                 }
             });
-            console.log(xValue);
-            let calculatedX = 2 * (Number(xValue) * 50 / Number(elemR.val())) + 150;
-            let calculatedY = -(((Number(elemY.val().replace(",",".")) * 50 * 2) / Number(elemR.val())) - 150);
-            dotTarget.attr("r", 3);
-            dotTarget.attr("cy", calculatedY);
-            dotTarget.attr("cx", calculatedX);
-            if (checkArea()){
-                $('#menhera').attr("src","resources/correct.jpg");
+
+            console.log('jopa');
+            if (!yok){
+                $('#kotae').remove();
+                $('.form').after('<div id="kotae">Data error</div>');
+                console.log('lal')
             } else {
-                $('#menhera').attr("src" , "resources/incorrect.jpg");
+                $('#kotae').remove();
+                $.ajax({
+                    type: "GET",
+                    url: "table.php",
+                    data: 'x=' + x_value + '&y=' + y_value + '&r=' + radius,
+                    success: function (response) {
+                        let answer = response.split(" ");
+                        counter++;
+                        addToTable(answer[1], answer[2]);
+                    }
+                });
             }
-            return true;
         }
-    };
-    const submit = function(e) {
-        e.preventDefault();
-        if (!onInpChange()){
-            document.querySelector('#error-log').textContent = "Значение Y должно быть в диапазоне [-3;5]";
-            return;
-        }
-        const formData = new FormData(document.querySelector('#form'));
-        let xValue = 0;
-        $('.x-button').each(function () {
-            if ($(this).hasClass('x-button-active')){
-                xValue = $(this).find('span').text();
-            }
-        });
-        formData.append("x_value", xValue);
-        fetch('php/check.php', {
-            method: 'POST',
-            body: formData,
-        })
-            .then(ans => ans.text())
-            .then(table => document.querySelector('#ans').innerHTML=table);
-    };
-    document.addEventListener('DOMContentLoaded', function(){
-        document.querySelector('#submitButton').addEventListener('click', submit);
-    });
-    const clear = function(e) {
-        e.preventDefault();
-        fetch('php/clear.php', {
-            method: 'POST',
-        })
-            .then(ans => ans.text())
-            .then(table => document.querySelector('#ans').innerHTML=table);
-    };
-    document.addEventListener('DOMContentLoaded', function(){
-        document.querySelector('#clearButton').addEventListener('click', clear);
-        $(document).animate("fadeIn");
-    });
-</script>
+    </script>
+
+
+
+</head>
+<body>
+
 
 
 <header class="header">
     <div class="container">
         <div class="header_inner">
             <div class="name">
-                Лазурин Евгений, R3236
+                <button class="master" onmousedown="play(master)">Лазурин Евгений, R3236</button>
             </div>
             <div class="option">
                 Вариант 202022
@@ -111,12 +103,13 @@
 <footer class="footer">
     <div class="container">
         <div class="footer_inner">
-            <span>  &copy; Лазурин Евгений</span>
+            <span>&copy; Лазурин Евгений</span>
         </div>
     </div>
 </footer>
 
 <div class="content">
+
     <div class="svg-container">
         <svg width="300" height="300" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
             <!-- Стрелочки-->
@@ -167,31 +160,86 @@
         </svg>
     </div>
 
-    <form class="data-send-form wrapper" id="form" oninput="onInpChange()">
+
+
+
+    <form class="data-send-form wrapper" id="form">
         <div>
-            <div class="form-inputs ">
+            <div class="form-inputs">
 
                 <div class="group">
-                    <input type="text" id="y-value-select" name="y_value" required>
+                    <label class="Y">Y Value:</label>
+                    <label for="y-value-select"></label><input type="text" id="y-value-select" name="y_value" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
-                    <label>Y Value:</label>
 
-                    <div class="R"><p><b>R:</b></p>
-                        <p><text>1</text><input type="checkbox" id="payt1" name="option1" value="1"><label for="payt1"></label></p>
-                        <p><text>2</text><input type="checkbox"  id="payt3" name="option2" value="2"><label for="payt3"></label></p>
-                        <p><text>3</text><input type="checkbox" id="payt2" name="option3" value="3"><label for="payt2"></label></p>
-                        <p><text>4</text><input type="checkbox" id="payt4" name="option4" value="4"><label for="payt4"></label></p>
-                            <p><text>5</text><input type="checkbox" id="payt5" name="option5" value="5"><label for="payt5"></label></p></div>
+
+                    <div class="R">
+                    <table class="table_check">
+                        <tr>
+                            <td>R:</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input class="checkbox" type="checkbox" value="1" id="option1" onmousedown="play(WOO)"><label for="option1"></label> </td>
+                            <td><input class="checkbox" type="checkbox" value="2" id="option2" onmousedown="play(WOO)"><label for="option2"></label></td>
+                            <td><input class="checkbox" type="checkbox" value="3" id="option3" onmousedown="play(WOO)"><label for="option3"></label> </td>
+                            <td><input class="checkbox" type="checkbox" value="4" id="option4" onmousedown="play(WOO)"><label for="option4"></label></td>
+                            <td><input class="checkbox" type="checkbox" value="5" id="option5" onmousedown="play(WOO)"><label for="option5"></label></td>
+                        </tr>
+                    </table>
+                        <script>
+                            var f = document.forms.form;
+                            f.onchange = function() {
+                                var n = f.querySelectorAll('[type="checkbox"]'),
+                                    l = f.querySelectorAll('[type="checkbox"]:checked');
+                                for(var j=0; j<n.length; j++)
+                                    if (l.length >= 1) {
+                                        n[j].disabled = true;
+                                        for(var i=0; i<l.length; i++)
+                                            l[i].disabled = false;
+                                    } else {
+                                        n[j].disabled = false;
+                                    }
+                            }
+                        </script>
+                    </div>
+<!--                    <div class="R"><p><b>R:</b></p>-->
+<!--                        <p><text>1</text><input class="checkbox" type="checkbox" id="payt1" name="option1" value="1" onmousedown="play(master)"><label for="payt1"></label></p>-->
+<!--                        <p><text>2</text><input class="checkbox" type="checkbox"  id="payt3" name="option2" value="2"><label for="payt3"></label></p>-->
+<!--                        <p><text>3</text><input class="checkbox" type="checkbox" id="payt2" name="option3" value="3"><label for="payt2"></label></p>-->
+<!--                        <p><text>4</text><input class="checkbox" type="checkbox" id="payt4" name="option4" value="4"><label for="payt4"></label></p>-->
+<!--                        <p><text>5</text><input class="checkbox"  type="checkbox" id="payt5" name="option5" value="5"><label for="payt5"></label></p></div>-->
+
+                    <div class="form-buttons ">
+                        <button class="send-button" onmousedown="play(yes)" onclick="go()" id="submitButton">Отправить</button>
+                    </div>
                 </div>
 
+                <audio id="mmm" src="assets/sounds/Mmmmh.mp3" autoplay="false"></audio>
+                <audio id="WOO" src="assets/sounds/WOO.mp3" autoplay="false"></audio>
+                <audio id="yes" src="assets/sounds/Oh%20yes%20sir.mp3" autoplay="false"></audio>
+                <audio id="attention" src="assets/sounds/ATTENTION.mp3" autoplay="false"></audio>
+                <audio id="master" src="assets/sounds/Dungeon%20master.mp3" autoplay="false"></audio>
+                <audio id="boy" src="assets/sounds/Take%20it%20boy.mp3" autoplay="false"></audio>
+                <script>
+                    function play(audio) {
+                        this.audio = document.getElementById(audio);
+                        audio.play();
+                    }
+                </script>
 
                 <div class="x-buttons centered " id="x_value_select">
-                    <p style="margin-top: 7px"><strong>X Value: </strong></p>
+                    <p style="margin-top: 15px" >X Value: </p>
 
                     <div class="x-buttons__inner">
                         <p>
-                        <div class="x-button"><span>-3</span>
+                        <div class="x-button" onmousedown="play(boy)"><span>-3</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -199,7 +247,7 @@
                         </div>
                         </p>
                         <p>
-                        <div class="x-button"><span>-2</span>
+                        <div class="x-button" onmousedown="play(boy)" ><span>-2</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -207,7 +255,7 @@
                         </div>
                         </p>
                         <p>
-                        <div class="x-button"><span>-1</span>
+                        <div class="x-button" onmousedown="play(boy)"><span>-1</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -219,7 +267,7 @@
 
                     <div class="x-buttons__inner">
                         <p>
-                        <div class="x-button"><span>1</span>
+                        <div class="x-button" onmousedown="play(boy)"><span>1</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -227,7 +275,7 @@
                         </div>
                         </p>
                         <p>
-                        <div class="x-button x-button-active"><span>0</span>
+                        <div class="x-button x-button-active" onmousedown="play(boy)"><span>0</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -235,7 +283,7 @@
                         </div>
                         </p>
                         <p>
-                        <div class="x-button"><span>2</span>
+                        <div class="x-button" onmousedown="play(boy)"><span>2</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -246,7 +294,7 @@
                     </div>
                     <div class="x-buttons__inner">
                         <p>
-                        <div class="x-button"><span>3</span>
+                        <div class="x-button" onmousedown="play(boy)"><span>3</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -254,7 +302,7 @@
                         </div>
                         </p>
                         <p>
-                        <div class="x-button"><span>4</span>
+                        <div class="x-button" onmousedown="play(boy)" ><span>4</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -262,7 +310,7 @@
                         </div>
                         </p>
                         <p>
-                        <div class="x-button"><span>5</span>
+                        <div class="x-button" onmousedown="play(boy)"><span>5</span>
                             <svg>
                                 <polyline class="o1" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
                                 <polyline class="o2" points="0 0, 50 0, 50 35, 0 35, 0 0"></polyline>
@@ -274,18 +322,21 @@
                 </div>
 
 
-                <div class="form-buttons ">
-                    <button class="send-button" type="submit" id="submitButton">Отправить</button>
-                    <button class="clear-button" type="button" id="clearButton">Очистить</button>
+                <div>
+                    <table id="resultSet" class="table_head">
+                        <tr id="tableHead">
+                            <th>№</th>
+                            <th>Попадание</th>
+                            <th>Время</th>
+                            <th>Время работы скрипта</th>
+                        </tr>
+                    </table>
                 </div>
-
             </div>
+
             <span id="error-log" style="color: red"> </span>
-
-
         </div>
     </form>
-
 </div>
 
 
@@ -300,14 +351,8 @@
                 }
             });
             $(this).toggleClass("x-button-active");
-            onInpChange();
         })
     })
 </script>
-
-
-
-
-
 </body>
 </html>
