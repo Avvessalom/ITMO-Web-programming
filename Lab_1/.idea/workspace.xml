@@ -21,11 +21,17 @@
       </list>
     </option>
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+    <include_path>
+      <path value="C:/php/pear" />
+      <path value="$PROJECT_DIR$/../../modules/php/PHP_7.3-x64" />
+    </include_path>
+  </component>
   <component name="ProjectId" id="1ThlVWgV1yBrpm6ucLwCkBhpGMG" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../modules/php/PHP_7.3-x64" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -46,6 +52,11 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="PhpLocalRunConfigurationType" factoryName="PHP Console" nameIsGenerated="true" path="$PROJECT_DIR$/table.php">
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -61,7 +72,11 @@
       <workItem from="1573987803484" duration="8240000" />
       <workItem from="1574075606762" duration="10660000" />
       <workItem from="1574152277279" duration="72000" />
-      <workItem from="1574152393064" duration="11241000" />
+      <workItem from="1574152393064" duration="21722000" />
+      <workItem from="1574365702732" duration="20537000" />
+      <workItem from="1575283914596" duration="2316000" />
+      <workItem from="1575460148537" duration="19170000" />
+      <workItem from="1575488121741" duration="1373000" />
     </task>
     <servers />
   </component>

@@ -8,31 +8,21 @@
     <script src="jquery-3.4.1.js"></script>
     <script src="date.format.js"></script>
     <script>
-        $(function(){
-            $("input").keydown(function(event){
-                if(event.keyCode == 13){
+
+
+            $('input').keydown(function(event){
+                if(event.keyCode === 13){
                     event.preventDefault();
                     return false;
                 }
             });
-        });
-        // $(function(){
-        //     $("input").keydown(function(event){
-        //         if(event.keyCode == 13){
-        //             event.preventDefault();
-        //             return false;
-        //         }
-        //     });
-        //     // $('.checkbox').click(function(){
-        //     //     $('.checkbox').removeAttr('checked','checked');
-        //     //     $(this).prop('checked', true);
-        //     // });
-        // });
+
         let counter = 0;
         function addToTable (hit, stime,x,y,r){
-            $("#resultSet tr:last").after('<tr class="tableCell"><td>'+counter+'</td><td>'+hit+'</td><td>'+new Date().format("dd mmm HH:MM:ss")+'</td><td>'+stime+'</td>');
+            $("#resultSet tr:last").after('<tr class="tableCell"><td>'+counter+'</td><td>'+hit+'</td><td>'+new Date().format("dd mmm HH:MM:ss")+'</td><td>'+stime+'</td><td>'+x+'</td><td>'+y+'</td><td>'+r+'</td></tr>');
         }
         function go() {
+
             let yok = false;
             let r = 0;
             let xValue = 0;
@@ -46,7 +36,7 @@
 
             //r start
             $('.checkbox').each(function(){
-                if ($(this).prop('checked') == true){
+                if ($(this).prop('checked') === true){
                     radius = $(this).val();
                 }
             });
@@ -59,7 +49,6 @@
                 }
             });
 
-            console.log('jopa');
             if (!yok){
                 $('#kotae').remove();
                 $('.form').after('<div id="kotae">Data error</div>');
@@ -71,17 +60,16 @@
                     url: "table.php",
                     data: 'x=' + x_value + '&y=' + y_value + '&r=' + radius,
                     success: function (response) {
-                        let answer = response.split(" ");
+                        let answer = response.split(' ');
                         counter++;
-                        addToTable(answer[1], answer[2]);
+                        console.log(answer);
+                        addToTable(answer[0], answer[1], x_value, y_value, radius);
                     }
                 });
             }
+            return false
         }
     </script>
-
-
-
 </head>
 <body>
 
@@ -163,7 +151,7 @@
 
 
 
-    <form class="data-send-form wrapper" id="form">
+    <form class="data-send-form wrapper" id="form" onsubmit="return go()">
         <div>
             <div class="form-inputs">
 
@@ -194,14 +182,14 @@
                         </tr>
                     </table>
                         <script>
-                            var f = document.forms.form;
+                            let f = document.forms.form;
                             f.onchange = function() {
-                                var n = f.querySelectorAll('[type="checkbox"]'),
+                                let n = f.querySelectorAll('[type="checkbox"]'),
                                     l = f.querySelectorAll('[type="checkbox"]:checked');
-                                for(var j=0; j<n.length; j++)
+                                for(let j=0; j<n.length; j++)
                                     if (l.length >= 1) {
                                         n[j].disabled = true;
-                                        for(var i=0; i<l.length; i++)
+                                        for(let i=0; i<l.length; i++)
                                             l[i].disabled = false;
                                     } else {
                                         n[j].disabled = false;
@@ -217,7 +205,7 @@
 <!--                        <p><text>5</text><input class="checkbox"  type="checkbox" id="payt5" name="option5" value="5"><label for="payt5"></label></p></div>-->
 
                     <div class="form-buttons ">
-                        <button class="send-button" onmousedown="play(yes)" onclick="go()" id="submitButton">Отправить</button>
+                        <button class="send-button" onmousedown="play(yes)"   id="submitButton" >Отправить</button>
                     </div>
                 </div>
 
@@ -235,7 +223,7 @@
                 </script>
 
                 <div class="x-buttons centered " id="x_value_select">
-                    <p style="margin-top: 15px" >X Value: </p>
+                    <p style="margin: 15px 0px 0px">X Value: </p>
 
                     <div class="x-buttons__inner">
                         <p>
@@ -329,6 +317,9 @@
                             <th>Попадание</th>
                             <th>Время</th>
                             <th>Время работы скрипта</th>
+                            <th>x</th>
+                            <th>y</th>
+                            <th>r</th>
                         </tr>
                     </table>
                 </div>
