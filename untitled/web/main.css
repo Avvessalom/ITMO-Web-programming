@@ -5,7 +5,7 @@ body{
 }
 
 .header{
-    padding: 10px;
+    padding: 20px;
     position: absolute;
     top: 0;
     right: 0;
@@ -14,16 +14,14 @@ body{
     background: #30D5C8;
     font-size: 30px;
 }
-.name{ padding-left: 30px}
-.option{padding-left: 75%;
+.name{ padding-left: 20px}
+.option{padding-right: 35px;
     text-align: right;
 }
 
 .container{
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
 }
 .footer{
     flex: 0 0 auto;
@@ -37,22 +35,12 @@ body{
     text-align: center;
     background: #30D5C8 ;
 }
-.footer-inner{
-    padding-left: 45%;
-    font-size: 30px;
-}
+
 .content{
     padding-top: 5%;
     padding-left: 0.5%;
 }
-.button{
-    padding-left: 90px;
-}
-.Ybutton{
-    width: 50px;
-    height: 30px;
-    text-align: center;
-}
+
 .svg-container{
     text-align: center;
 }
@@ -66,9 +54,3 @@ body{
 .form-table{
     font-size: 30px;
 }
-
-.checked{
-    border-collapse: collapse;
-    border: 2px solid #4bb6a7;
-}
-

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<html lang=ru xmlns:https="http://www.w3.org/1999/xhtml">
+<html lang=ru xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Lab_2</title>
@@ -11,7 +11,7 @@
 <header class="header">
   <div class="container">
     <div class="name">
-      <span>Лазурин Евгений P3210</span>
+      <span>Lazurin Eugene</span>
     </div>
     <div class="option">
       <span> Вариант 1421</span>
@@ -30,7 +30,7 @@
 <table class="content" cellspacing="50 px">
   <tr>
     <td >
-      <canvas id="canvas" onclick="clicCanvas('canvas', document.getElementById('form').R.value)" style="background-color:#ffffff; border-radius: 20px;" width="300" height="300"></canvas>
+      <canvas id="canvas" onclick="clicCanvas()" style="background-color:#ffffff; border-radius: 20px;" width="300" height="300"></canvas>
 
     </td>
     <td>
@@ -59,18 +59,18 @@
             <td><div>
               <label class="Y">Y value:</label>
 
-              <button class="Ybutton" name="Y" value="-5">-5</button>
-              <button class="Ybutton" name="Y" value="-4">-4</button>
-              <button class="Ybutton" name="Y" value="-3">-3</button>
-              <div class="button">
-                <button class="Ybutton" name="Y" value="-2">-2</button>
-                <button class="Ybutton" name="Y" value="-1">-1</button>
-                <button class="Ybutton" name="Y" value="0">0</button>
+              <button name="Y" value="-5">-5</button>
+              <button name="Y" value="-4">-4</button>
+              <button name="Y" value="-3">-3</button>
+              <div>
+                <button name="Y" value="-2">-2</button>
+                <button name="Y" value="-1">-1</button>
+                <button name="Y" value="0">0</button>
               </div>
-              <div class="button">
-                <button class="Ybutton" name="Y" value="1">1</button>
-                <button class="Ybutton" name="Y" value="2">2</button>
-                <button class="Ybutton" name="Y" value="3">3</button>
+              <div>
+                <button name="Y" value="1">1</button>
+                <button name="Y" value="2">2</button>
+                <button name="Y" value="3">3</button>
               </div>
             </div></td>
             <td>
@@ -79,8 +79,6 @@
           </tr>
         </table>
       </form>
-    </td>
-    <td>
     </td>
   </tr>
 </table>

@@ -118,26 +118,16 @@ function clicCanvas(canvId, R) {
 function isArea(x, y, R) {
     x = (x - 150) / 130;
     y = (150 - y) / 130;
-    if(x <= 0 && y >= 0 && x * x + y * y <= (R * R)/3){
+    if(x<=0 && y<=0 && x*x+y*y<=R*R){
         return 'true';
     }
-    if(x >= 0 && y <= 0 && y >= (x*1.8 - R)){
+    if(x<=0 && y>=0 && y<=(2.0*x+1.0*R)){
         return 'true';
     }
-    if(x>=0 && y>=0 && x<=R && y<=R){
+    if(x>=0 && y<=0 && x<=R && y>=-R){
         return 'true';
     }
     return 'false';
-
-    e.preventDefault();
-    $.ajax({
-        type: "GET",
-        url: "controller",
-        data: 'x' + x + '&y' + y + '&R' + R,
-        success: function (data) {
-            console.log(data);
-        }
-    });
 }
 
 function drawPoint(id, x, y, isArea){
