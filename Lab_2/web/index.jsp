@@ -6,8 +6,9 @@
   <link rel="stylesheet" href="main.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
   <script src="scripts.js"></script>
+  <script src="jquery-3.4.1.js"></script>
 </head>
-<body onload="drawCanwas('canvas',1)">
+<body onload="drawCanwas('canvas', 1)">
 <header class="header">
   <div class="container">
     <div class="name">
@@ -31,7 +32,6 @@
   <tr>
     <td >
       <canvas id="canvas" onclick="clicCanvas('canvas', document.getElementById('form').R.value)" style="background-color:#ffffff; border-radius: 20px;" width="300" height="300"></canvas>
-
     </td>
     <td>
       <form class="data-send-form" id="form" action="checking" method="get" onsubmit="return validate(this);">
@@ -46,11 +46,11 @@
               <label class="R">R Value:</label>
               <label for="R"></label>
               <select id="R" name="R" required>
-                <option onclick="drawCanwas('canvas',1)" value="1">1</option>
-                <option onclick="drawCanwas('canvas',1.5)" value="1.5">1.5</option>
-                <option onclick="drawCanwas('canvas',2)" value="2">2</option>
-                <option onclick="drawCanwas('canvas',2.5)" value="2.5">2.5</option>
-                <option onclick="drawCanwas('canvas',3)" value="3">3</option>
+                <option onclick="drawCanwas('canvas', 1)" value="1">1</option>
+                <option onclick="drawCanwas('canvas', 1.5)" value="1.5">1.5</option>
+                <option onclick="drawCanwas('canvas', 2)" value="2">2</option>
+                <option onclick="drawCanwas('canvas', 2.5)" value="2.5">2.5</option>
+                <option onclick="drawCanwas('canvas', 3)" value="3">3</option>
               </select>
             </div></td>
 

@@ -103,13 +103,13 @@ public class AreaaCheckServlet extends HttpServlet {
     }
 
     public static boolean checkArea(double x, double y, double R){
-        if(x <= 0 && y >= 0 && x * x + y * y <= (R * R)/3){
+        if(x <= 0 && y >= 0 && x * x + y * y <= (R * R) / 3){
             return true;
         }
         if(x >= 0 && y <= 0 && y >= (x*1.8 - R)){
             return true;
         }
-        if(x>=0 && y>=0 && x<=R && y<=R){
+        if(x >= 0 && y >= 0 && x <= R && y <= R){
             return true;
         }
         return false;

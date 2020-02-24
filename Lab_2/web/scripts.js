@@ -19,10 +19,9 @@ function validate(_form){
         createCanvas('canvas', X, Y, R);
         return true;
     }
-
 }
 
-//--------------------------------------------------------------------
+
 
 function drawCanwas(id, r){
     var canvas = document.getElementById(id),
@@ -91,7 +90,8 @@ function drawCanwas(id, r){
 }
 
 function createCanvas(id, x, y, r){
-
+    var canvas = document.getElementById(id),
+        context = canvas.getContext("2d");
     drawCanwas(id, r);
     context.beginPath();
     context.rect(Math.round(150 + ((x / r) * 130))-2, Math.round(150 - ((y / r) * 130))-2, 4, 4);
@@ -100,7 +100,7 @@ function createCanvas(id, x, y, r){
     context.fillStyle = "red";
     context.fill();
     context.stroke();
-
+    console.log("zdarova");
 }
 
 function clicCanvas(canvId, R) {
@@ -113,31 +113,27 @@ function clicCanvas(canvId, R) {
     var y = event.clientY-top;
     var boolArea = isArea(x, y, R);
     drawPoint(canvId, x, y, boolArea);
+
+    $.ajax({
+        type:"get",
+        url: "http://localhost:8081/PIP_LAB_2_war_exploded/checking" + "?" + "X=" + x + "&R=" + R + "&Y=" + y,
+    });
+    console.log("tut")
 }
 
 function isArea(x, y, R) {
     x = (x - 150) / 130;
     y = (150 - y) / 130;
-    if(x <= 0 && y >= 0 && x * x + y * y <= (R * R)/3){
+    if(x <= 0 && y >= 0 && x * x + y * y <= (R * R) / 3){
         return 'true';
     }
     if(x >= 0 && y <= 0 && y >= (x*1.8 - R)){
         return 'true';
     }
-    if(x>=0 && y>=0 && x<=R && y<=R){
+    if(x >= 0 && y >= 0 && x <= R && y <= R){
         return 'true';
     }
     return 'false';
-
-    e.preventDefault();
-    $.ajax({
-        type: "GET",
-        url: "controller",
-        data: 'x' + x + '&y' + y + '&R' + R,
-        success: function (data) {
-            console.log(data);
-        }
-    });
 }
 
 function drawPoint(id, x, y, isArea){
@@ -156,5 +152,4 @@ function drawPoint(id, x, y, isArea){
     }
     context.fill();
     context.stroke();
-
 }
