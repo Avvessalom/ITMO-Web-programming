@@ -1,0 +1,78 @@
+<div class="canvas-form">
+  <audio id="mmm" src="assets/sound/Mmmmh.mp3" autoplay="autoplay"></audio>
+  <canvas (click)="checkClick(this.$event)" class="canvas" id="graph" height="280" width="280" style="width: 100%">
+  </canvas>
+  <div class="request-form" style="width: 100%">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="addPointsFromForm()"
+      id="formId" name="form-check" novalidate>
+
+      <div class="xInput card-action main">
+        <p class="text">X</p>
+        <label *ngFor="let x of AVAILABLE_X" class="mat-radio-button">
+          <input class="radio" formControlName="x" name="x" type="radio" value="{{x}}"/>
+          <span>{{x}}</span>
+        </label>
+      </div>
+      <div class="yInput card-action main">
+        <label for="y">
+            <input
+              formControlName="y"
+              id="y"
+              placeholder="Введите Y (-3...3)"
+              type="text"
+            [ngClass]="{'invalid': form.get('y').invalid && form.get('y').touched}"
+            >
+          <label for="y"></label>
+          <span class="helper-text red-text"
+          *ngIf="form.get('y').invalid && form.get('y').touched">
+          <span *ngIf="form.get('y').errors['required']" > Y не должен быть пустым </span>
+          <span *ngIf="form.get('y').errors['pattern']"> это не число, кста </span>
+          <span *ngIf="form.get('y').errors['max']"> многовато будет </span>
+          <span *ngIf="form.get('y').errors?.min"> маловато будет </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="rInput card-action main">
+        <p class="text">R</p>
+        <label *ngFor="let r of AVAILABLE_R" class="mat-radio-button">
+          <input class="radio" onmousedown="play(mmm)" (change)="drawGraphWithR(r)" formControlName="r" name="r" id="r" type="radio" value="{{r}}"/>
+          <span>{{r}}</span>
+        </label>
+      </div>
+      <div class="card-action">
+        <button
+          type="submit"
+          class="modal-action btn waves-effect green submit"
+        [disabled]="form.invalid || form.disabled">Отправить
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div>
+  <table class="striped responsive-table highlight">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>R</th>
+      <th>Результат</th>
+      <th>login</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of arrPoints">
+      <td>{{p.id}}</td>
+      <td>{{p.x}}</td>
+      <td>{{p.y}}</td>
+      <td>{{p.r}}</td>
+      <td>{{p.isArea}}</td>
+      <td>{{p.login}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

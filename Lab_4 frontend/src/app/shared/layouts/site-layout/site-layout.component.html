@@ -1,0 +1,22 @@
+<ul class="sidenav sidenav-fixed a-sidenav">
+  <h4>Lab 4</h4>
+
+  <li
+    class="bold"
+    *ngFor="let link of links"
+    routerLinkActive="active"
+  >
+    <a [routerLink]="[link.url]" class="waves-effect waves-green">
+      {{link.name}}
+      routerLinkActive="active"
+    </a>
+  </li>
+
+  <li class="bold last">
+    <a href="#" class="waves-effect waves-green" (click)="logout($event)">Выйти</a>
+  </li>
+</ul>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
